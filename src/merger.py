@@ -357,7 +357,7 @@ class ExcelExclusionApp:
                    )
            missing_column_warnings = []
            unified_columns = {}
-           total_steps = len(SHEETS) * 2
+           total_steps = len(VARIABLE_SHEETS) + len(SHEETS)
            current_step = 0
            # Анализ шапок
            for sheet in VARIABLE_SHEETS:
@@ -378,7 +378,7 @@ class ExcelExclusionApp:
                        f"Лист '{sheet}': в дополнительном файле отсутствуют колонки: {', '.join(missing)}"
                    )
                current_step += 1
-               self.update_progress(int(current_step / total_steps * 50))
+               self.update_progress(int(current_step / total_steps * 100))
            # Чтение всех листов
            main_dfs = {
                sheet: pd.read_excel(
